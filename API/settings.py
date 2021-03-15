@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     ]
 SITE_ID = 1
 
-MEDIA_ROOT='C:/Users/Rafael/proyectos/proyecto django/ApiRest-Django/media'
+MEDIA_ROOT='/media/'
 
 MEDIA_URL='/media/'
 
