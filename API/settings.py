@@ -100,7 +100,7 @@ DATABASES = {
         'NAME': 'helpcomdb',
         'USER': 'admin',
         'PASSWORD': '12345',
-        'HOST': 'localhost',
+        'HOST': '10.131.2.60',
         'PORT': 5432,
     }
 }
