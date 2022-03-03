@@ -8,4 +8,4 @@ RUN pip install --no-cache-dir -r requeriments.txt
 
 COPY . .
 
-CMD ["python", "./manage.py"]
+CMD ["python"]
