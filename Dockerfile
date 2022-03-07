@@ -6,6 +6,10 @@ EXPOSE 8080
 
 COPY requeriments.txt ./
 
+USER root
+
+RUN yum install -y vim
+
 RUN pip install gunicorn
 
 RUN pip install --no-cache-dir -r requeriments.txt
