@@ -23,7 +23,7 @@ urlpatterns = [
     path(r'^admin/', admin.site.urls),
     url(r'^helpcom/', include('apps.helpcom.urls')),
 ]"""
-
+"""
 #from django.urls import path
 from rest_framework import routers
 from apps.helpcom import viewsSets
@@ -51,3 +51,45 @@ urlpatterns = [
     url(r'^registro/', include('rest_auth.registration.urls')),
     url(r'^media/(?P<path>.*)$',serve,{'document_root':settings.MEDIA_ROOT},),
     ]
+
+
+"""
+
+
+# prueba con industrial empieza aqui
+from apps.helpcom import viewsSets
+from django.urls import include, path
+from django.conf.urls import url,include
+from rest_framework import routers
+from apps.industrialgip import views
+from django.views.static import serve
+from django.conf import settings
+from django.contrib import admin
+
+
+routeri = routers.DefaultRouter()
+routerh = routers.DefaultRouter()
+
+routeri.register(r'users', views.UserViewSet)
+routeri.register(r'groups', views.GroupViewSet)
+routerh.register(r'area_de_conocimientoh', viewsSets.AreaViewSet)
+routerh.register(r'campañah', viewsSets.CampañaViewSet)
+routerh.register(r'publicacionh', viewsSets.PublicacionViewSet)
+routerh.register(r'comentarioh', viewsSets.ComentarioViewSet)
+routerh.register(r'PerfilUsuarioh', viewsSets.UsuariosViewSet)
+routerh.register(r'userh', viewsSets.UserViewSet)
+
+# Wire up our API using automatic URL routing.
+# Additionally, we include login URLs for the browsable API.
+urlpatterns = [
+    url(r'', admin.site.urls),
+    path('helpcom/', include(routerh.urls)),
+    path('industrialgip/', include(routeri.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^media/(?P<path>.*)$',serve,{'document_root':settings.MEDIA_ROOT},),
+]
+
+
+
+
+
