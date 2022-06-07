@@ -68,25 +68,37 @@ from django.contrib import admin
 
 
 routeri = routers.DefaultRouter()
-routerh = routers.DefaultRouter()
-
+#routerh = routers.DefaultRouter()
+# links para apps de industrial
 routeri.register(r'users', views.UserViewSet)
 routeri.register(r'groups', views.GroupViewSet)
-routerh.register(r'area_de_conocimientoh', viewsSets.AreaViewSet)
-routerh.register(r'campañah', viewsSets.CampañaViewSet)
-routerh.register(r'publicacionh', viewsSets.PublicacionViewSet)
-routerh.register(r'comentarioh', viewsSets.ComentarioViewSet)
-routerh.register(r'PerfilUsuarioh', viewsSets.UsuariosViewSet)
-routerh.register(r'userh', viewsSets.UserViewSet)
+routeri.register(r'empresa', views.EmpresaViewSet)
+routeri.register(r'turno', views.TurnoViewSet)
+routeri.register(r'Linea', views.LineaViewSet)
+routeri.register(r'tp', views.TPViewSet)
+routeri.register(r'turno', views.EmpresaViewSet)
+routeri.register(r'materiaprima', views.MateriaPrimaViewSet)
+routeri.register(r'planificacion', views.PlanificacionViewSet)
+routeri.register(r'diarioprod', views.DiarioProdViewSet)
+routeri.register(r'diariomp', views.DiarioMPViewSet)
+
+#links para aplicacion red social
+#routerh.register(r'area_de_conocimientoh', viewsSets.AreaViewSet)
+#routerh.register(r'campañah', viewsSets.CampañaViewSet)
+#routerh.register(r'publicacionh', viewsSets.PublicacionViewSet)
+#routerh.register(r'comentarioh', viewsSets.ComentarioViewSet)
+#routerh.register(r'PerfilUsuarioh', viewsSets.UsuariosViewSet)
+#routerh.register(r'userh', viewsSets.UserViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
-    url(r'', admin.site.urls),
-    path('helpcom/', include(routerh.urls)),
+    path(r'', admin.site.urls),
+   # path('helpcom/', include(routerh.urls)),
     path('industrialgip/', include(routeri.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^media/(?P<path>.*)$',serve,{'document_root':settings.MEDIA_ROOT},),
+    url(r'^registro/', include('rest_auth.registration.urls')),
 ]
 
 
