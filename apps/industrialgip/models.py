@@ -5,20 +5,31 @@ import datetime
 
 class Empresa(models.Model):
     descripcion = models.CharField(max_length=50)
+    def __str__(self):
+        return self.descripcion
 
 class TP(models.Model):
     descripcion = models.CharField(max_length=50)
+    def __str__(self):
+        return self.descripcion
 
 class Linea(models.Model):
     descripcion = models.CharField(max_length=50)
+    def __str__(self):
+        return self.descripcion
 
 class Turno(models.Model):
     descripcion = models.CharField(max_length=50)
     horario = models.CharField(max_length=50)
+    def __str__(self):
+        texto = "{0} {1}"
+        return texto.format(self.descripcion, self.horario)
+        
 
 class MateriaPrima(models.Model):
     descripcion = models.TextField()
     empresadestino = models.ForeignKey(Empresa,related_name='MpE',null=True,blank=True,on_delete=models.CASCADE)
+
 
 class Planificacion(models.Model):
     empresa = models.ForeignKey(Empresa,related_name='PlE',null=True,blank=True,on_delete=models.CASCADE)
@@ -27,6 +38,9 @@ class Planificacion(models.Model):
     fecha = models.DateTimeField(default = datetime.datetime.now)
     cantidadkg = models.FloatField()
     estatus = models.CharField(max_length=5)
+    def __str__(self):
+        texto = "{0} {1} {2} kg:{3}"
+        return texto.format(self.empresa, self.linea, self.fecha, self.cantidadkg)
 
 class DiarioProd(models.Model):
     orden = models.OneToOneField(Planificacion, related_name='DpO', on_delete=models.CASCADE)
