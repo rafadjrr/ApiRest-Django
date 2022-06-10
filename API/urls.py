@@ -93,6 +93,7 @@ routeri.register(r'diariomp', views.DiarioMPViewSet)
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
+    path('', views.index, name='index'),
     path(r'admin/', admin.site.urls),
    # path('helpcom/', include(routerh.urls)),
     path('industrialgip/', include(routeri.urls)),

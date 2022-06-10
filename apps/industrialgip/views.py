@@ -5,6 +5,11 @@ from rest_framework import permissions
 from rest_framework import viewsets
 from apps.industrialgip.models import Empresa, TP, Linea, Turno, MateriaPrima, Planificacion, DiarioProd, DiarioMP
 from apps.industrialgip.serializers import UserSerializer, GroupSerializer, EmpresaSerializer, TPSerializer, LineaSerializer, TurnoSerializer, MateriaPrimaSerializer, PlanificacionSerializer, DiarioProdSerializer, DiarioMPSerializer
+from django.http import HttpResponse
+
+
+def index(request):
+    return HttpResponse("Hellow, welcome to the jungle. this is DJANGO /admin ----> admin site")
 
 # create your views here.
 class UserViewSet(viewsets.ModelViewSet):

@@ -17,7 +17,25 @@ class MateriaPrimaAdmin(admin.ModelAdmin):
 
 @admin.register(Planificacion)
 class PlanificacionAdmin(admin.ModelAdmin):
-    list_display = ('empresa','linea','tp','fecha', 'cantidadkg', 'estatus')
+    list_display = ('id','empresa','linea','tp','fecha', 'cantidadkg', 'estatus')
+    ordering = ('-fecha',)
+    search_fields = ('empresa__descripcion','linea__descripcion','tp__descripcion','estatus','fecha','cantidadkg')
+    list_display_links = ('id','empresa','linea','tp','fecha', 'cantidadkg', 'estatus')
+    list_filter = ('id','empresa','linea','tp','fecha', 'cantidadkg', 'estatus')
+    list_per_page = 10
 
-admin.site.register(DiarioProd)
-admin.site.register(DiarioMP)
+@admin.register(DiarioProd)
+class DiarioProdAdmin(admin.ModelAdmin):
+    list_display = ('orden','turno','fecha','hora', 'kilosp', 'desperdicios','idrack','observaciones')
+    ordering = ('-fecha',)
+#    search_fields = ('orden__id','turno__descripcion','fecha','cantidadkg','idrack','observaciones')
+    list_display_links = ('orden','turno','fecha','hora', 'kilosp', 'desperdicios','idrack','observaciones')
+
+    list_filter = ('orden','turno','fecha','hora', 'kilosp', 'desperdicios','idrack','observaciones')
+    list_per_page = 10
+#admin.site.register(DiarioProd)
+
+@admin.register(DiarioMP)
+class DiarioMPAdmin(admin.ModelAdmin):
+    list_display = ('turno','linea','producto','materiaprima', 'fecha', 'ingresokg','consumokg','observaciones')
+#admin.site.register(DiarioMP)

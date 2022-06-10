@@ -29,6 +29,9 @@ class Turno(models.Model):
 class MateriaPrima(models.Model):
     descripcion = models.TextField()
     empresadestino = models.ForeignKey(Empresa,related_name='MpE',null=True,blank=True,on_delete=models.CASCADE)
+    def __str__(self):
+        texto = "{0} -> {1}"
+        return texto.format(self.descripcion, self.empresadestino)
 
 
 class Planificacion(models.Model):
@@ -39,8 +42,9 @@ class Planificacion(models.Model):
     cantidadkg = models.FloatField()
     estatus = models.CharField(max_length=5)
     def __str__(self):
-        texto = "{0} {1} {2} kg:{3}"
-        return texto.format(self.empresa, self.linea, self.fecha, self.cantidadkg)
+        
+        texto = "ORDEN:{0} linea: {1} fecha: {2} kg: {3} estatus: {4}"
+        return texto.format(self.id, self.linea, self.fecha, self.cantidadkg, self.estatus)
 
 class DiarioProd(models.Model):
     orden = models.OneToOneField(Planificacion, related_name='DpO', on_delete=models.CASCADE)
@@ -51,6 +55,9 @@ class DiarioProd(models.Model):
     desperdicios = models.IntegerField()
     idrack = models.IntegerField()
     observaciones = models.CharField(max_length=50)
+    def __str__(self):
+        texto = "DIARIOPROD#{0} fecha: {1} "
+        return texto.format(self.id, self.fecha)
 
 class DiarioMP(models.Model):
     turno = models.ForeignKey(Turno,related_name='DmpT',null=True,blank=True,on_delete=models.CASCADE)
@@ -61,3 +68,6 @@ class DiarioMP(models.Model):
     ingresokg = models.FloatField()
     consumokg = models.FloatField()
     observaciones = models.TextField()
+    def __str__(self):
+        texto = "DIARIOMP#{0} fecha: {1} "
+        return texto.format(self.id, self.fecha)
