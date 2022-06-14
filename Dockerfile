@@ -7,15 +7,11 @@ RUN curl https://packages.microsoft.com/config/rhel/8/prod.repo > /etc/yum.repos
 RUN yum remove unixODBC-utf16 unixODBC-utf16-devel
 RUN yum install -y unixODBC-devel
 RUN yum install -y vim
-RUN useradd -ms /bin/bash python
-
-USER python
-RUN pip install gunicorn
-RUN pip install --no-cache-dir -r requeriments.txt
 
 WORKDIR /home/python/src/app
-COPY requeriments.txt ./
 COPY . .
+RUN pip install gunicorn
+RUN pip install --no-cache-dir -r requeriments.txt
 
 CMD ["python","manage.py","runserver","0:8080"]
 ENV "OPENSHIFT_BUILD_NAME"="djangorest-6" "OPENSHIFT_BUILD_NAMESPACE"="default" "OPENSHIFT_BUILD_SOURCE"="https://github.com/rafadjrr/ApiRest-Django" "OPENSHIFT_BUILD_REFERENCE"="develop" "OPENSHIFT_BUILD_COMMIT"="01fbbdd05d2fa3ba9a74010d29bd38b0be7f607e"
