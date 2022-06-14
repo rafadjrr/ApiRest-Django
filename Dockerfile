@@ -7,8 +7,8 @@ RUN curl https://packages.microsoft.com/config/rhel/8/prod.repo > /etc/yum.repos
 RUN yum remove unixODBC-utf16 unixODBC-utf16-devel
 # optional: for unixODBC development headers
 RUN yum install -y unixODBC-devel
-USER 1001
 RUN yum install -y vim
+USER 1001
 RUN pip install gunicorn
 RUN pip install --no-cache-dir -r requeriments.txt
 COPY . .
