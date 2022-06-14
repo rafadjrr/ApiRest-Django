@@ -98,15 +98,18 @@ REST_FRAMEWORK = {
 }
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'helpcomdb',
-        'USER': 'admin',
-        'PASSWORD': '12345',
-        'HOST': '172.30.135.209',
-        'PORT': 5432,
-    }
-}
+        'default':{
+            'ENGINE': 'sql_server.pyodbc',
+            'NAME': 'API_DB',
+            'USER': 'admin',
+            'PASSWORD': 'polysaco',
+            'HOST': '192.168.1.132',
+            'PORT': '',
+            'OPTIONS': {
+                'driver': 'ODBC Driver 17 for SQL Server'
+                },
+            }
+        }
 
 
 AUTH_PASSWORD_VALIDATORS = [
