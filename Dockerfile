@@ -3,10 +3,10 @@ WORKDIR /usr/src/app
 EXPOSE 8080
 COPY requeriments.txt ./
 USER root
-RUN yum install -y unixodbc-dev
-RUN yum install -y unixODBC unixODBC-devel 
-RUN yum install -y epel-release
-RUN yum install -y gcc-c++
+RUN curl https://packages.microsoft.com/config/rhel/8/prod.repo > /etc/yum.repos.d/mssql-release.repo
+RUN yum remove unixODBC-utf16 unixODBC-utf16-devel
+# optional: for unixODBC development headers
+RUN yum install -y unixODBC-devel
 USER 1001
 RUN yum install -y vim
 RUN pip install gunicorn
