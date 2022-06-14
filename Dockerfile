@@ -9,8 +9,8 @@ RUN yum remove unixODBC-utf16 unixODBC-utf16-devel #to avoid conflicts
 RUN ACCEPT_EULA=Y yum install msodbcsql
 # optional: for bcp and sqlcmd
 RUN ACCEPT_EULA=Y yum install mssql-tools
-echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
-source ~/.bashrc
+RUN echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
+RUN source ~/.bashrc
 # optional: for unixODBC development headers
 RUN yum install unixODBC-devel
 
