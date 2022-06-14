@@ -1,8 +1,8 @@
 FROM registry.redhat.io/ubi8/python-36
 EXPOSE 8080
 USER root
-#RUN curl https://packages.microsoft.com/config/rhel/8/prod.repo > /etc/yum.repos.d/mssql-release.repo
-#RUN yum install -y unixODBC-devel
+RUN curl https://packages.microsoft.com/config/rhel/8/prod.repo > /etc/yum.repos.d/mssql-release.repo
+RUN yum install -y unixODBC-devel
 RUN yum install -y vim
 WORKDIR /usr/src/app
 COPY . .
