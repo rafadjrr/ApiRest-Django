@@ -7,9 +7,9 @@ RUN curl https://packages.microsoft.com/config/rhel/7/prod.repo > /etc/yum.repos
 
 RUN yum remove unixODBC-utf16 unixODBC-utf16-devel #to avoid conflicts
 RUN ACCEPT_EULA=Y 
-RUN yum install msodbcsql
+RUN yum install msodbcsql --skip-broken
 # optional: for bcp and sqlcmd
-RUN yum install mssql-tools
+RUN yum install mssql-tools --skip-broken
 RUN echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
 RUN source ~/.bashrc
 # optional: for unixODBC development headers
