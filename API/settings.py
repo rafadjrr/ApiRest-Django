@@ -100,10 +100,10 @@ REST_FRAMEWORK = {
 DATABASES = {
         'default':{
             'ENGINE': 'sql_server.pyodbc',
-            'NAME': 'API_DB',
-            'USER': 'admin',
-            'PASSWORD': 'polysaco',
-            'HOST': '192.168.1.132',
+            'NAME': 'apidb',
+            'USER': 'sa',
+            'PASSWORD': '123456Ps',
+            'HOST': '172.30.119.142',
             'PORT': '',
             'OPTIONS': {
                 'driver': 'ODBC Driver 17 for SQL Server'
