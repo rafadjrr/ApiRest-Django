@@ -9,4 +9,4 @@ instalar las dependencias con el archivo requeriments: pip install -r requiremen
 
 revisar la configuracion dbhost en el API/settings.py
 
-realizar la migracion de las tablas helpcom con el comando: python manage.py migrate helpcom
+realizar la migracion de las tablas con el comando: python manage.py migrate 
